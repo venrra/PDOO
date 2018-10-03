@@ -8,7 +8,7 @@ module ModeloQytetet
   class Casilla
     
     attr_reader:numeroCasilla ,:coste, :tipo, :titulo
-    ###############################################################################
+    ############################################################################
     attr_writter private :titulo=
     
     def initialize(unNumeroCasilla, unTipo, unTitulo)
