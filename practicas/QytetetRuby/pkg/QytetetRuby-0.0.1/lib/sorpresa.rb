@@ -10,26 +10,11 @@ module ModeloQytetet
       @valor = unValor #valor de sorpresa
       @tipo = unTipo #tipo de sorpresa de TipoSorpresa
     end
+    
+    protected
+    attr_reader:texto, :valor, :tipo
 
-    attr_reader:texto
-    attr_reader:valor
-    attr_reader:tipo
-
-  #forma explicita  
-=begin
-    def texto()
-      return texto
-    end
-
-    def valor()
-      return valor
-    end
-
-    def tipo()
-      return tipo
-    end
-=end
-
+    public
     def to_s()
       "Texto: #{@texto} \n Valor: #{@valor} \n Tipo: #{@tipo}"
     end

@@ -14,21 +14,21 @@ public class Sorpresa {
     private TipoSorpresa tipo;
     private int valor;
     
-    public Sorpresa(String texto, int valor, TipoSorpresa tipo){
+    Sorpresa(String texto, int valor, TipoSorpresa tipo){
         this.texto = texto;
         this.tipo = tipo;
         this.valor = valor;
     }
     
-    public String getTexto(){
+    String getTexto(){
         return this.texto;
     }
     
-    public TipoSorpresa getTipo(){
+    TipoSorpresa getTipo(){
         return this.tipo;
     }
     
-    public int getValor(){
+    int getValor(){
         return this.valor;
     }
     

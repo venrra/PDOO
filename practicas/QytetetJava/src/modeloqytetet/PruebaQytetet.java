@@ -5,6 +5,7 @@
  */
 package modeloqytetet;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -15,8 +16,20 @@ public class PruebaQytetet {
     /**
      * @param args the command line arguments
      */
-   public static Qytetet juego = new Qytetet();
     
+    private static final Scanner in = new Scanner (System.in);
+    
+    static Qytetet juego = Qytetet.getInstance();
+    
+    public static ArrayList<String> getNombreJugadores(){
+        ArrayList<String> s= new ArrayList<>();
+        for(int i=0; i < juego.MAX_JUGADORES; i++){
+            s.add(in.nextLine());
+        }
+        return s;
+    }
+    
+    /*
     private static ArrayList<Sorpresa> Metodo1(){
        
         ArrayList<Sorpresa> nuevoArray = new ArrayList();
@@ -39,15 +52,13 @@ public class PruebaQytetet {
                 nuevoArray.add(i);
         return nuevoArray;
     } 
-    
+    */
     public static void main(String[] args) {
         // TODO code application logic here
-        juego.inicializarCartasSorpresa();
-        
-        for (Sorpresa i : juego.getMazo()){
-            System.out.println(i);
-        }
-        
+        ArrayList<String> nombres = getNombreJugadores();
+        juego.inicializarJuego(nombres);
+        System.out.println(juego.toString());
+        /*
         //LLAMA AL METODO1
         System.out.println("////////METODO1");
         System.out.println(PruebaQytetet.Metodo1().toString());
@@ -61,5 +72,7 @@ public class PruebaQytetet {
         System.out.println("////////METODO3");
          for (TipoSorpresa tipo : TipoSorpresa.values())
             System.out.println(PruebaQytetet.Metodo3(tipo).toString());
+    */
+     
     }
 }

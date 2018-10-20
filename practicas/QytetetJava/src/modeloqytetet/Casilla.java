@@ -16,7 +16,7 @@ public class Casilla {
     private TituloPropiedad titulo;//asocia la casilla a su titulo de propiedad
     
     //Constructor con parametros para casillas que no son tipo CALLE
-    public Casilla(int numeroCasilla, TipoCasilla tipo) {
+    Casilla(int numeroCasilla, TipoCasilla tipo) {
         this.numeroCasilla = numeroCasilla;
         this.coste = 0;
         this.tipo = tipo;
@@ -24,45 +24,64 @@ public class Casilla {
     }
     
     //Constructor con parametros para casillas tipo CALLE se le pasas titulopropiedad de donde se optienen tambein el coste
-    public Casilla(int numeroCasilla, TituloPropiedad titulo){
+    Casilla(int numeroCasilla, TituloPropiedad titulo){
         this.numeroCasilla = numeroCasilla;
         this.coste = titulo.getPrecioCompra();
         this.tipo = TipoCasilla.CALLE;
         //usamos un metodo auxiliar para inicializar el titulo
         setTitulo(titulo);
     }
-
-    private void setTitulo(TituloPropiedad titulo) {
-        this.titulo = titulo;
-    }
     
-    public int getNumeroCasilla() {
-        return numeroCasilla;
+    TituloPropiedad asignarPropiedad(Jugador jugador){
+        throw new UnsupportedOperationException("Sin implementar");
     }
 
-    public int getCoste() {
+    int getCoste() {
         return coste;
     }
-
-    public TipoCasilla getTipo() {
+    
+    int getNumeroCasilla() {
+        return numeroCasilla;
+    }
+ 
+    TipoCasilla getTipo() {
         return tipo;
     }
-
+ 
     public TituloPropiedad getTitulo() {
         return titulo;
     }
+    
+    int pagarAlquiler(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    boolean propietarioEncarcelado(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    private void setTitulo(TituloPropiedad titulo) {
+        this.titulo = titulo;
+    }
 
+    boolean soyEdificable(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    boolean tengoPropietario(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
     @Override
     public String toString() {
-        String string = "Casilla{" + "numeroCasilla=" + numeroCasilla + ", coste=" + coste + ", tipo=" + tipo ;
+        String string = "Casilla{" + "numeroCasilla=" + numeroCasilla + ", coste=" + coste + ", tipo=" + tipo;
         //si el titulo es null quiere decir que no necesita titulo y por lo tanto no deve aparecer
         if (this.titulo!=null)      
             string += ", titulo=" + titulo;
         
-        string += '}';
+        string += "}\n";
         
         return string; 
     }
-    
     
 }

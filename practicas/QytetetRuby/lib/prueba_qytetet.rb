@@ -8,9 +8,18 @@ require_relative "qytetet"
 
 module ModeloQytetet
   class PruebaQytetet
-    
-      @@juego = Qytetet.new
-    
+    #for i in(0..9)
+    #10.times do |num|
+      @@juego = Qytetet.instance
+      
+      def self.getNombreJugadores()
+        nombres = Array.new
+        for i in 1..Qytetet.MAX_JUGADORES
+          nombres << gets
+        end
+        return nombres
+      end
+=begin    
     def self.metodo1
       nuevo_mazo = Array.new
       
@@ -43,10 +52,13 @@ module ModeloQytetet
       end
       return nuevoMazo
     end
-    
+=end    
     def self.main
-      @@juego.inicializarCartasSorpresa
       
+      nombres = getNombreJugadores
+      @@juego.inicializarJuego(nombres)
+      puts @@juego.to_s
+=begin
       puts metodo1()
       puts "METODO 2///////////////////\n"
       puts metodo2()
@@ -58,6 +70,7 @@ module ModeloQytetet
       
       puts "Prueba inspect/////////////\n"
       puts @@juego.mazo.inspect
+=end 
     end
   end
   

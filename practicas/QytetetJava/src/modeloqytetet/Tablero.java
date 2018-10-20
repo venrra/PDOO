@@ -14,47 +14,61 @@ public class Tablero {
     private ArrayList<Casilla> casillas;
     private Casilla carcel;
     
-    //Aqui segenera e inicializa el tablero con todas las casillas ordenadas del 0 al 9 intercalando los tipos
-    private void inicializar(){
-        casillas = new ArrayList();
-        casillas.add(new Casilla(00,TipoCasilla.SALIDA));
-        casillas.add(new Casilla(01,));
-        casillas.add(new Casilla(02,));
-        casillas.add(new Casilla(03,));
-        casillas.add(new Casilla(04,));
-        casillas.add(new Casilla(05,));
-        casillas.add(new Casilla(06,));
-        casillas.add(new Casilla(07,));
-        casillas.add(new Casilla(08,));
-        casillas.add(new Casilla(09,));
-        casillas.add(new Casilla(10,));
-        casillas.add(new Casilla(11,));
-        casillas.add(new Casilla(12,));
-        casillas.add(new Casilla(13,));
-        casillas.add(new Casilla(14,));
-        casillas.add(new Casilla(15,));
-        casillas.add(new Casilla(16,));
-        casillas.add(new Casilla(17,));
-        casillas.add(new Casilla(18,));
-        casillas.add(new Casilla(19,));
-        
-        carcel = new Casilla(10, TipoCasilla.CARCEL);
+    Tablero() {
+        this.inicializar(); 
     }
     
-    public Tablero() {
-        inicializar(); 
+    boolean esCasillaCarcel(int numeroCasilla){
+        throw new UnsupportedOperationException("Sin implementar");
     }
-
+    
+    Casilla getCarcel() {
+        return carcel;
+    }
+    
     public ArrayList<Casilla> getCasillas() {
         return casillas;
     }
-
-    public Casilla getCarcel() {
-        return carcel;
+    
+    //Segenera e inicializa el tablero con todas las casillas ordenadas del 0 al 19 intercalando los tipos
+    private void inicializar(){
+        casillas = new ArrayList<>();
+        casillas.add(new Casilla(0,TipoCasilla.SALIDA));
+        casillas.add(new Casilla(1, new TituloPropiedad("HOLA",0,0,0,0,0)));
+        casillas.add(new Casilla(2, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(3, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(4, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(5, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(6, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(7, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(8, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(9, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(10,TipoCasilla.CARCEL));
+        casillas.add(new Casilla(11, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(12, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(13, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(14, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(15, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(16, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(17, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(18, TipoCasilla.SORPRESA));
+        casillas.add(new Casilla(19, TipoCasilla.SORPRESA));
+        
+        //no se cual es mejor
+        //carcel = casillas.get(10)
+        carcel = new Casilla(10, TipoCasilla.CARCEL);
+    }
+    
+    Casilla ontenerCasillaFinal(Casilla casilla, int desplazamiento){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    Casilla obtenerCasillaNumero(int numeroCasilla){
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     @Override
     public String toString() {
-        return "Tablero{" + "casillas=" + casillas + ", carcel=" + carcel + '}';
+        return "Tablero:" + "\nTodas las casillas=\n" + casillas + "\ncarcel=" + carcel + '}' + "\n";
     }
 }
