@@ -19,7 +19,7 @@ public class Tablero {
     }
     
     boolean esCasillaCarcel(int numeroCasilla){
-        throw new UnsupportedOperationException("Sin implementar");
+       return numeroCasilla == carcel.getNumeroCasilla();
     }
     
     Casilla getCarcel() {
@@ -60,7 +60,11 @@ public class Tablero {
     }
     
     Casilla ontenerCasillaFinal(Casilla casilla, int desplazamiento){
-        throw new UnsupportedOperationException("Sin implementar");
+        int siguiente=0;
+        siguiente = desplazamiento + casilla.getNumeroCasilla();
+        siguiente %= casillas.size();
+        
+        return casillas.get(siguiente);
     }
     
     Casilla obtenerCasillaNumero(int numeroCasilla){
@@ -69,6 +73,6 @@ public class Tablero {
     
     @Override
     public String toString() {
-        return "Tablero:" + "\nTodas las casillas=\n" + casillas + "\ncarcel=" + carcel + '}' + "\n";
+        return "Tablero: \n" + "\nTodas las casillas=\n" + casillas + "\ncarcel=" + carcel + '}' + "\n";
     }
 }
