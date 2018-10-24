@@ -68,7 +68,16 @@ public class Tablero {
     }
     
     Casilla obtenerCasillaNumero(int numeroCasilla){
-        throw new UnsupportedOperationException("Sin implementar");
+        /*
+        boolean encontrado = false;
+        Casilla aux;
+        for (int i=0; i<casillas.size() && encontrado==false; i++ )
+            if ( casillas.get(i).getNumeroCasilla() == numeroCasilla ){
+                aux = casillas.get(i);
+            }
+        return aux;
+        */
+        return casillas.get(numeroCasilla);
     }
     
     @Override
