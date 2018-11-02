@@ -1,0 +1,6 @@
+pdooo
+
+para crear unmeros aleatorios usamos la clase randon 
+
+r = new Random();
+r.nxt in(n) [0,N[;
