@@ -202,9 +202,9 @@ public class Qytetet {
             jugadores.get(i).setCasillaActual(tablero.obtenerCasillaNumero(0));
         
         Random r = new Random();
-        //r.nxt in(n) [0,jugadores.size()[;
+        jugadorActual = jugadores.get( r.nextInt( jugadores.size() ));
         
-        estado = EstadoJuego.JA_ENCARCELADO;
+        estado = EstadoJuego.JA_PREPARADO;
     }
 
     private void setCartaActual(Sorpresa cartaActual) {

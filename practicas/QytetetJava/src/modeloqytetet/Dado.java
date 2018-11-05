@@ -5,6 +5,8 @@
  */
 package modeloqytetet;
 
+import java.util.Random;
+
 /**
  *
  * @author venrra
@@ -23,7 +25,9 @@ public class Dado {
     }
     
     int tirar(){
-        throw new UnsupportedOperationException("Sin implementar");
+        Random r = new Random();
+        valor = r.nextInt(6)+1;
+        return valor;
     }
 
     public int getValor() {
