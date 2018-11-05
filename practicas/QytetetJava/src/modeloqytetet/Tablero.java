@@ -59,7 +59,7 @@ public class Tablero {
         carcel = new Casilla(10, TipoCasilla.CARCEL);
     }
     
-    Casilla ontenerCasillaFinal(Casilla casilla, int desplazamiento){
+    Casilla obtenerCasillaFinal(Casilla casilla, int desplazamiento){
         int siguiente=0;
         siguiente = desplazamiento + casilla.getNumeroCasilla();
         siguiente %= casillas.size();

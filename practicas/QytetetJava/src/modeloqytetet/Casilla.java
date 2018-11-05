@@ -49,7 +49,7 @@ public class Casilla {
     }
  
     public TituloPropiedad getTitulo() {
-        return titulo;
+        return this.titulo;
     }
     
     int pagarAlquiler(){
@@ -57,7 +57,7 @@ public class Casilla {
     }
     
     boolean propietarioEncarcelado(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return this.titulo.propietarioEncarcelado();
     }
     
     private void setTitulo(TituloPropiedad titulo) {
@@ -65,11 +65,16 @@ public class Casilla {
     }
 
     boolean soyEdificable(){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean edificable = true;
+        
+        if (this.tipo != TipoCasilla.CALLE)
+            edificable = false;
+        
+        return edificable;
     }
     
     boolean tengoPropietario(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return this.titulo.tengoPropiedad();
     }
     
     @Override
