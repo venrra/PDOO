@@ -152,7 +152,9 @@ public class Qytetet {
     }
     
     void mover(int numCasillaDestino){
-    
+        for(Casilla i : tablero.getCasillas())
+            if (i.getNumeroCasilla() == numCasillaDestino)
+                jugadorActual.setCasillaActual(i);
     }
 
     public Casilla obtenerCasillaJugadorActual(){
