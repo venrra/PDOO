@@ -40,15 +40,21 @@ public class TituloPropiedad {
     }
     
     int calcularCosteHipotecar(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeHipotecar = (int) (hipotecaBase + numCasas * 0.5 * hipotecaBase + numHoteles * hipotecaBase);
+        return costeHipotecar;
     }
     
     int calcularImporteAlquiler(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeAlquiler = this.alquilerBase + (int)(numCasas*0.5 + numHoteles*2);
+        
+        this.propietario.modificarSaldo(costeAlquiler);
+        
+        return costeAlquiler; 
     }
     
     int calcularPrecioVenta(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int precioVenta = (int)(this.precioCompra + ( this.numCasas + this.numHoteles) * this.precioEdificar * this.factorRevalorizacion);
+        return precioVenta;
     }
     
     void cancelarHipoteca(){
@@ -60,11 +66,11 @@ public class TituloPropiedad {
     }
     
     void edificarCasa(){
-        throw new UnsupportedOperationException("Sin implementar");
+        this.numCasas += 1;
     }
     
     void edificarHotel(){
-        throw new UnsupportedOperationException("Sin implementar");
+       this.numHoteles += 1;
     }
     
     String getNombre() {
@@ -108,11 +114,17 @@ public class TituloPropiedad {
     }
    
     int hipotecar(){
-        throw new UnsupportedOperationException("Sin implementar");
+        this.setHipotecada(true);
+        int costeHipoteca = this.calcularCosteHipotecar();
+
+        return costeHipoteca;
     }
 
     int pagarAlquiler(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeAlquiler = this.calcularImporteAlquiler();
+        this.propietario.modificarSaldo(costeAlquiler);
+        
+        return costeAlquiler;
     }
     
     boolean propietarioEncarcelado(){

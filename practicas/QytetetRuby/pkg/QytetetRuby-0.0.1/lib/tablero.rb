@@ -21,7 +21,7 @@ module ModeloQytetet
     attr_reader :casillas, :carcel
     
     def esCasillaCarcel(numeroCasilla)
-      raise NotImplementedError 
+      return @carcel.numeroCasilla == numeroCasilla;
     end
     
     def inicializar()  
@@ -50,13 +50,17 @@ module ModeloQytetet
     end
      private :inicializar
     
-    protected
+    public
     def obtenerCasillaFinal(casilla, desplazamiento) 
-      raise NotImplementedError 
+      siguiente=0
+      siguiente = desplazamiento + casilla.numeroCasilla
+      siguiente %= casillas.size
+        
+      return casillas[siguiente]      
     end
     
     def obtenerCasillaNumero(numeroCasilla)
-      raise NotImplementedError 
+      return @casillas[numeroCasilla]
     end
     
     public

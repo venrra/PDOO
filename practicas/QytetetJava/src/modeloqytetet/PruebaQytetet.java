@@ -55,7 +55,7 @@ public class PruebaQytetet {
     */
     public static void main(String[] args) {
         // TODO code application logic here
-        ArrayList<String> nombres = getNombreJugadores();
+      /* ArrayList<String> nombres = getNombreJugadores();
         juego.inicializarJuego(nombres);
         System.out.println(juego.toString());
         /*
@@ -73,6 +73,67 @@ public class PruebaQytetet {
          for (TipoSorpresa tipo : TipoSorpresa.values())
             System.out.println(PruebaQytetet.Metodo3(tipo).toString());
     */
-     
+      boolean comprado;
+       ArrayList<String> jugadores = getNombreJugadores();
+      
+       juego.inicializarJuego(jugadores);
+       
+      // System.out.print("\nEstado juego: " + juego.getEstadoJuego());
+       System.out.print("\nJugador Inicial: "+ juego.getJugadorActual().getNombre() + " \tcasilla actual:" + juego.getJugadorActual().getCasillaActual().getNumeroCasilla());      
+       System.out.print("\nMovemos jugador a la casilla 1");
+       juego.mover(1);
+      
+       System.out.print("\nJugador Actual: " + juego.getJugadorActual().getNombre());
+       System.out.print("\nCasilla Actual: "+ juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+       System.out.print("\nVamos a comprar la propiedad de la casilla 1. Saldo del jugador actual: " + juego.getJugadorActual().getSaldo());
+       System.out.print("\nPropiedades del jugador actual: " + juego.getJugadorActual().getPropiedades().toString());
+       
+       comprado = juego.comprarTituloPropiedad();
+       
+       if(comprado){
+           System.out.print("\nSaldo del jugador tras comprar: " + juego.getJugadorActual().getSaldo());
+           System.out.print("\nPropiedades tras la compra: " + juego.getJugadorActual().getPropiedades().toString());
+       }
+       
+       //System.out.print("\nEstado juego: " + juego.getEstadoJuego()+ "\n");
+       
+       System.out.print("Provamos a que le toque al siquiente");
+       juego.siguienteJugador();
+       System.out.print("\nJugador Actual: " + juego.getJugadorActual().getNombre());
+       System.out.print("\nCasilla Actual: " + juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+       System.out.print("\nMovemos jugador actual a una casilla de tipo sorpresa (9) CARCEL : ");
+       juego.mover(9);
+       System.out.print("\nJugador Actual: " + juego.getJugadorActual().getNombre());
+       System.out.print("\nCasilla Actual: " + juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+       juego.setCartaActual(juego.getMazo().get(0));
+       
+       System.out.print("\nJugdor encarcelado? "+ juego.getJugadorActual().getEncarcelado());
+       juego.aplicarSorpresa();
+       System.out.print("\nAplicamos sorpresa");
+       System.out.print("\nJugdor encarcelado tras aplicar la sorpresa? "+ juego.getJugadorActual().getEncarcelado());
+       juego.siguienteJugador();
+       System.out.print("\nJugador Actual: " + juego.getJugadorActual().getNombre());
+       System.out.print("\nCasilla Actual: " + juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+       System.out.print("\nMovemos jugador actual a una casilla comprada por otro jugador: (1) ");
+       System.out.print("\nSaldo antes moverlo:  "+juego.getJugadorActual().getSaldo());
+       juego.mover(1);
+       System.out.print("\nSaldo del propietario de (1) antes de que se mueva el actual:  "+juego.getJugadorActual().getCasillaActual().getTitulo().getPropietario().getSaldo());
+       System.out.print("\nSaldo jugador actual despues de moverlo:  "+juego.getJugadorActual().getSaldo());
+       System.out.print("\nSaldo del propietario de (1) despues:  "+juego.getJugadorActual().getCasillaActual().getTitulo().getPropietario().getSaldo() + "\n");
+       juego.siguienteJugador();
+       System.out.print("\nJugador Actual: " + juego.getJugadorActual().getNombre());
+       System.out.print("\nCasilla Actual: " + juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+       System.out.print("\nMovemos a casilla (8): ");
+       juego.mover(8);
+       //comprado = juego.comprarTituloPropiedad();
+       
+       if(comprado){
+           System.out.print("\nSaldo del jugador tras comprar: " + juego.getJugadorActual().getSaldo());
+           System.out.print("\nPropiedades tras la compra: " + juego.getJugadorActual().getPropiedades().toString());
+       }
+       juego.venderPropiedad(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+       
+           System.out.print("\nSaldo del jugador tras vender: " + juego.getJugadorActual().getSaldo());
+           System.out.print("\nPropiedades tras la venta: " + juego.getJugadorActual().getPropiedades().toString());
     }
 }

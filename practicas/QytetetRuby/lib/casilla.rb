@@ -4,6 +4,7 @@
 # and open the template in the editor.
 
 #require_relative "tipo_casilla"
+requiere_relative "tipo_casilla"
 
 module ModeloQytetet
   class Casilla
@@ -16,7 +17,7 @@ module ModeloQytetet
     end
     
     #CONSTRUCTOR de casilla sin titulo usa initialize, que actua como constructor de casilla de tipo calle por defecto
-    protected
+
     def self.casilla_sin_titulo(unNumeroCasilla, unTipo)
       self.new(unNumeroCasilla, unTipo, nil)
     end
@@ -26,21 +27,34 @@ module ModeloQytetet
    private    
     attr_writer :titulo
     
-    protected
+    public
     def asgnarPropietario(jugador)
-      raise NotImplementedError
+      @titulo.propietario(jugador)
+      
+      return @titulo
     end
     
     def pagarAlquiler()
-      raise NotImplementedError
+      costeAlquiler = @titulo.pagarAlquiler
+      return costeAlquiler
     end
     
+    def propietarioEncarcelado()
+        return @titulo.propietarioEncarcelado
+    end   
+    
     def soyEdificable()
-      raise NotImplementedError
+      edificable = true
+      
+      if @tipo != TipoCasilla::CALLE
+        edificable = false
+      end
+      
+      return edificable
     end
     
     def tengoPropietario()
-      raise NotImplementedError
+      return @titulo.tengoPropietario
     end
     
     public

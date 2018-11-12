@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author venrra
  */
-public class Jugador {
+public class Jugador implements Comparable{
     private String nombre;
     private boolean encarcelado;
     private Casilla casillaActual;
@@ -32,7 +32,20 @@ public class Jugador {
     }
     
     boolean comprarTituloPropiedad(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeCompra = this.casillaActual.getCoste();
+        boolean comprado=false;
+        if (costeCompra < this.saldo){
+            
+            TituloPropiedad titulo = this.casillaActual.asignarPropietario(this);
+            
+            this.propiedades.add(titulo);
+            
+            this.modificarSaldo(-costeCompra);
+            
+            comprado=true;
+        }
+        
+        return comprado;
     }
     
     int cuantasCasasHoteles(){
@@ -43,7 +56,22 @@ public class Jugador {
     }
     
     boolean deboPagarAlquiler(){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean deboPagar = false;
+        TituloPropiedad titulo = casillaActual.getTitulo();
+        boolean esDeMiPropiedad = this.esdeMiPropiedad(titulo);
+
+        if(!esDeMiPropiedad){
+            boolean tienePropietario = titulo.tengoPropiedad();
+            if(tienePropietario){
+                boolean encarcelado = titulo.propietarioEncarcelado();
+                if(!encarcelado){
+                    boolean estaHipotecada = titulo.getHipotecada();
+                    deboPagar = !esDeMiPropiedad & tienePropietario & !encarcelado & !estaHipotecada;
+                }
+            }
+        }
+        
+        return deboPagar;
     }
     
     Sorpresa devolverCartaLibertad(){
@@ -57,19 +85,56 @@ public class Jugador {
     }
     
     boolean edificarCasa(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean edificada = false;
+        int numCasas = titulo.getNumCasas();
+       
+        if(numCasas < 4){
+            
+            int costeEdificarCasa = titulo.getPrecioEdificar();
+            boolean tengoSaldo = this.tengoSaldo(costeEdificarCasa);
+            
+            if(tengoSaldo){
+                
+                titulo.edificarCasa();
+                this.modificarSaldo(-costeEdificarCasa);            
+                edificada = true;
+            }
+        }
+        
+        return edificada;
     }
     
     boolean edificarHotel(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean edificada = false;
+        int numHoteles = titulo.getNumHoteles();
+       
+        if(numHoteles < 4){
+            
+            int costeEdificarHotel = titulo.getPrecioEdificar();
+            boolean tengoSaldo = this.tengoSaldo(costeEdificarHotel);
+            
+            if(tengoSaldo){
+                
+                titulo.edificarHotel();
+                this.modificarSaldo(-costeEdificarHotel);            
+                edificada = true;
+            }
+        }
+        
+        return edificada;
     }
     
     private void eliminarDeMisPropiedades(TituloPropiedad titulo){
-        
+        propiedades.remove(titulo);
+        titulo.setPropietario(null);
     } 
     
     private boolean esdeMiPropiedad(TituloPropiedad titulo){
         return this.propiedades.contains(titulo);
+    }
+    
+    boolean estoyEnCalleLibre(){
+        throw new UnsupportedOperationException("Sinsi implementar");
     }
 
     String getNombre() {
@@ -96,12 +161,14 @@ public class Jugador {
         return saldo;
     }
     
-    boolean hipotecarPropiedad(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+    void hipotecarPropiedad(TituloPropiedad titulo){
+        int costeHipoteca = titulo.hipotecar();
+        this.modificarSaldo(costeHipoteca);
     }
     
     void irACarcel(Casilla casilla){
-        
+        this.setCasillaActual(casilla);
+        this.setEncarcelado(true);
     }
     
     int modificarSaldo(int cantidad){
@@ -122,10 +189,10 @@ public class Jugador {
         return capital;
     }
     
-    ArrayList<TituloPropiedad> obtenerPropiedades(boolean hipoteca){
+    ArrayList<TituloPropiedad> obtenerPropiedades(boolean estadoHipoteca){
         ArrayList<TituloPropiedad> titulosHipoteca = new ArrayList<>();
         
-        if (hipoteca == true){
+        if (estadoHipoteca == true){
             for ( TituloPropiedad i : propiedades)
                 if (i.getHipotecada() == true)
                     titulosHipoteca.add(i);
@@ -140,7 +207,10 @@ public class Jugador {
     }
     
     void pagarAlquiler(){
-    
+        
+        int costeAlquiler = this.casillaActual.pagarAlquiler();
+        
+        this.modificarSaldo(-costeAlquiler);
     }
     
     void pagarImpuesto(){
@@ -148,7 +218,12 @@ public class Jugador {
     }
 
     void pagarLibertad(int cantidad){
-    
+        boolean tengoSaldo = this.tengoSaldo(cantidad);
+        
+        if(tengoSaldo){
+            this.setEncarcelado(false);
+            this.modificarSaldo(cantidad);
+        }
     }
     
     public void setCartalibertad(Sorpresa carta) {
@@ -171,15 +246,15 @@ public class Jugador {
         return ( saldo > cantidad );
     }
     
-    boolean venderPropiedad(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+    void venderPropiedad(Casilla casilla){
+        TituloPropiedad titulo = casilla.getTitulo();
+        
+        this.eliminarDeMisPropiedades(titulo);
+        
+        int precioVenta = titulo.calcularPrecioVenta();
+        
+        this.modificarSaldo(precioVenta);        
     }
-
-    /*@Override
-    public int compareTo(Object otroJugador) {
-        int otroCapital = ((Jugador) otroJugador).obtenerCapital();
-        return otroCapital ­ obtenerCapital();
-    }*/
     
     @Override
     public String toString() {
@@ -189,5 +264,11 @@ public class Jugador {
         s += '}' + "\n";
         
         return s;
+    }
+
+    @Override
+    public int compareTo(Object otroJugador) {
+        int otroCapital = ((Jugador) otroJugador).obtenerCapital();
+        return otroCapital - obtenerCapital();
     }
 }

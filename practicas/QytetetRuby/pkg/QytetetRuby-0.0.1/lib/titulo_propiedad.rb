@@ -22,21 +22,23 @@ module ModeloQytetet
     attr_accessor :hipotecada, :propietario
     private :hipotecada
     
-    protected
+    public
     def calcularCosteCancelar()
       raise NotImplementedError 
     end
     
     def calcularCosteHipotecar()
-      raise NotImplementedError 
+      costeHipotecar = (@hipotecaBase + @numCasas * 0.5 * @hipotecaBase + @numHoteles * @hipotecaBase).to_i
+       return costeHipotecar
     end
     
     def calcularImporteAlquiler()
-      raise NotImplementedError 
+      costeAlquiler = @alquilerBase + (@numCasas*0.5 + @numHoteles*2).to_i
     end
     
     def calcularPrecioVenta()
-      raise NotImplementedError 
+      precioVenta = (@precioCompra + ( @numCasas + @numHoteles) * @precioEdificar * @factorRevalorizacion).to_i
+      return precioVenta
     end
     
     def cancelarHipoteca()
@@ -48,29 +50,31 @@ module ModeloQytetet
     end
     
     def edificarCasa()
-      #void
-      raise NotImplementedError 
+      @numCasas += 1
     end
     
     def edificarHotel()
-      #void
-      raise NotImplementedError 
+      @numHoteles += 1
     end
     
     def hipotecar()
-      raise NotImplementedError 
+      setHipotecada(true)
+      costeHipoteca = this.calcularCosteHipotecar
+      
+      return costeHipoteca
     end
     
     def pagarAlquiler
-      raise NotImplementedError 
+       costeAlquiler = calcularImporteAlquiler()
+       @propietario = modificarSaldo(costeAlquiler)
     end
     
     def propietarioEncarcelado()
-      raise NotImplementedError 
+      @propietario.encarcelado
     end
     
     def tengoPropietario()
-      raise NotImplementedError 
+      return @propietario != nil
     end
     
     public
