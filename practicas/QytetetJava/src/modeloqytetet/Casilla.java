@@ -23,7 +23,7 @@ public class Casilla {
         this.titulo = null;
     }
     
-    //Constructor con parametros para casillas tipo CALLE se le pasas titulopropiedad de donde se optienen tambein el coste
+    //Constructor con parametros para casillas tipo CALLE se pasa como parametro titulopropiedad de donde se obtienen tambien el coste
     Casilla(int numeroCasilla, TituloPropiedad titulo){
         this.numeroCasilla = numeroCasilla;
         this.coste = titulo.getPrecioCompra();
@@ -85,7 +85,7 @@ public class Casilla {
     @Override
     public String toString() {
         String string = "Casilla{" + "numeroCasilla=" + numeroCasilla + ", coste=" + coste + ", tipo=" + tipo;
-        //si el titulo es null quiere decir que no necesita titulo y por lo tanto no deve aparecer
+        //si el titulo es null quiere decir que no necesita titulo y por lo tanto no debe aparecer
         if (this.titulo!=null)      
             string += ", titulo=" + titulo;
         
