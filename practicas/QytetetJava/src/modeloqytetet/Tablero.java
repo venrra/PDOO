@@ -30,7 +30,7 @@ public class Tablero {
         return casillas;
     }
     
-    //Segenera e inicializa el tablero con todas las casillas ordenadas del 0 al 19 intercalando los tipos
+    // Se genera e inicializa el tablero con todas las casillas ordenadas del 0 al 19 intercalando los tipos
     private void inicializar(){
         casillas = new ArrayList<>();
         casillas.add(new Casilla(0,TipoCasilla.SALIDA));
@@ -53,9 +53,7 @@ public class Tablero {
         casillas.add(new Casilla(17, TipoCasilla.SORPRESA));
         casillas.add(new Casilla(18, TipoCasilla.SORPRESA));
         casillas.add(new Casilla(19, TipoCasilla.SORPRESA));
-        
-        //no se cual es mejor
-        //carcel = casillas.get(10)
+       
         carcel = new Casilla(10, TipoCasilla.CARCEL);
     }
     
