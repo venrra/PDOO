@@ -33,6 +33,15 @@ public class Dado {
     public int getValor() {
         return valor;
     }
+    
+    boolean salgoDeLaCarcel(){
+      int n = tirar();
+      boolean x = n >= 5 ? true : false;
+      return x;
+    }
+    public int quienEmpieza(int n){
+      return random.nextInt(n);
+    }
 
     @Override
     public String toString() {
