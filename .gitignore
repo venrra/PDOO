@@ -1,4 +1,29 @@
-Tema*
-USB
-/practicas/QytetetJava/build/
-/practicas/QytetetJava/dist/
+## Java
+##############################
+## NetBeans
+##############################
+QytetetJava/nbproject/private/
+QytetetJava/build/
+QytetetJava/nbbuild/
+QytetetJava/dist/
+QytetetJava/nbdist/
+QytetetJava/nbactions.xml
+QytetetJava/nb-configuration.xml
+
+
+## Ruby
+##############################
+## NetBeans
+##############################
+QytetetRuby/nbproject/
+
+##############################
+## Visual Studio Code
+##############################
+.vscode/
+.code-workspace
+
+##############################
+## OS X
+##############################
+.DS_Store
